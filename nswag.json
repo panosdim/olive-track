@@ -1,0 +1,17 @@
+{
+    "runtime": "Net100",
+    "documentGenerator": {
+        "aspNetCoreToOpenApi": {
+            "project": "api/api.csproj",
+            "output": "web/src/api-types.ts"
+        }
+    },
+    "codeGenerators": {
+        "openApiToTypeScriptClient": {
+            "className": "{controller}Client",
+            "template": "Fetch",
+            "typeStyle": "Interface",
+            "output": "web/src/api-types.ts"
+        }
+    }
+}
