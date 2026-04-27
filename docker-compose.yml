@@ -1,0 +1,28 @@
+version: '3.8'
+
+services:
+  postgres:
+    image: postgres:17-alpine
+    container_name: olive-track-postgres
+    environment:
+      POSTGRES_USER: olive-track
+      POSTGRES_PASSWORD: dev-password
+      POSTGRES_DB: olive_track
+    ports:
+      - "5432:5432"
+    volumes:
+      - postgres_data:/var/lib/postgresql/data
+    networks:
+      - olive-track-network
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U olive-track"]
+      interval: 10s
+      timeout: 5s
+      retries: 5
+
+networks:
+  olive-track-network:
+    driver: bridge
+
+volumes:
+  postgres_data:
